@@ -1,0 +1,19 @@
+{
+  "name": "knowledge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "sass": "sass --no-source-map --style=expanded assets/styles/app.scss public/styles/app.css",
+    "sass:watch": "sass --watch assets/styles/app.scss public/styles/app.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.93.2"
+  }
+}
