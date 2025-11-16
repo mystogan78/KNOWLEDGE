@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement confirmé – Knowledge{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+  <div class="alert alert-success">
+    ✅ Paiement confirmé ! Merci pour votre achat.
+  </div>
+
+  {% if purchase.lesson %}
+    <a href="{{ path('lesson_show', { slug: purchase.lesson.slug }) }}" class="btn btn-success">
+      Accéder à la leçon
+    </a>
+  {% elseif purchase.course %}
+    <a href="{{ path('course_show', { slug: purchase.course.slug }) }}" class="btn btn-success">
+      Accéder au cursus
+    </a>
+  {% else %}
+    <p class="text-muted">Aucun contenu associé à cet achat.</p>
+  {% endif %}
+</div>
+{% endblock %}

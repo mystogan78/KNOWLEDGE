@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h1 class="mb-3">{{ lesson.title }}</h1>
+
+    {% if isPurchased %}
+        <div class="alert alert-success mb-4">
+            ✅ Vous avez déjà acheté cette leçon.
+        </div>
+
+        <article class="lesson-content">
+            {{ lesson.content|raw }}
+        </article>
+
+        {% if lesson.videoUrl %}
+            <div class="ratio ratio-16x9 mt-4">
+                <iframe src="{{ lesson.videoUrl }}" allowfullscreen></iframe>
+            </div>
+        {% endif %}
+    {% else %}
+        <p>{{ lesson.introText ?? lesson.content|slice(0, 200) ~ '…' }}</p>
+
+        {% if app.user %}
+            <form action="{{ path('purchase_lesson', { id: lesson.id }) }}" method="post">
+                <button class="btn btn-primary mt-3">
+                    Acheter cette leçon — {{ lesson.price|number_format(2, ',', ' ') }} €
+                </button>
+            </form>
+        {% else %}
+            <div class="alert alert-warning mt-3">
+                <a href="{{ path('app_login') }}">Connectez-vous</a> pour acheter cette leçon.
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

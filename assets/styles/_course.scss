@@ -1,0 +1,19 @@
+@use 'variables' as *;
+
+.course-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Même logique de couleurs que pour les catégories */
+.course-card--informatique { background: $color_accent; color: $color_background; }
+.course-card--cuisine      { background: $color_parsimony1; color: $color_background; }
+.course-card--jardinage    { background: $color_parsimony2; color: $color_background; }
+.course-card--musique      { background: $color_background; color: $color_text; }
+
+/* Si tu veux seulement colorer le badge : */
+.course-badge--informatique { background: $color_accent; color: $color_background; }
+.course-badge--cuisine      { background: $color_parsimony1; color: $color_background; }
+.course-badge--jardinage    { background: $color_parsimony2; color: $color_background; }
+.course-badge--musique      { background: $color_background; color: $color_text; }
+

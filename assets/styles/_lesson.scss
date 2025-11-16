@@ -1,0 +1,73 @@
+@use 'variables' as *;
+
+.lesson-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  &:hover { transform: translateY(-4px); }
+}
+
+/* Même logique que les catégories */
+.lesson-card--informatique,
+.lesson-badge--informatique {
+  background: $color_accent;
+  color: $color_background;
+
+  /* ✅ Ajoute ceci pour corriger le lien "Cursus" invisible */
+  --bs-card-color: #fff;          /* texte à l'intérieur de la carte */
+  --bs-link-color: #fff;          /* lien normal */
+  --bs-link-hover-color: #e6e6e6; /* lien au survol */
+}
+
+
+.lesson-card--cuisine,
+.lesson-badge--cuisine { background: $color_parsimony1; color: $color_background; }
+
+.lesson-card--jardinage,
+.lesson-badge--jardinage { background: $color_parsimony2; color: $color_background; }
+
+.lesson-card--musique,
+.lesson-badge--musique { background: $color_background; color: $color_text; }
+
+.lesson-card .lesson-intro,
+.lesson-card .lesson-intro * {
+  color: inherit !important;   /* reprend la couleur définie sur .lesson-card--xxx */
+}
+
+/* liens lisibles sur fond sombre */
+.lesson-card .lesson-intro a {
+  text-decoration: underline;
+  color: inherit !important;
+}
+
+
+.lesson-legend {
+  outline: 3px solid red;      // très visible
+  background: #fce4ec;         // fond rose pâle pour tester
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #000;                 // bien lisible
+}
+
+/* Pastilles rondes */
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: .5rem;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* Couleurs finales */
+.bg-informatique { background-color: #0074c7 !important; }
+.bg-cuisine      { background-color: #cd2c2e !important; }
+.bg-jardinage    { background-color: #82b864 !important; }
+.bg-musique      { background-color: #f1f8fc !important; border:1px solid #384050; }

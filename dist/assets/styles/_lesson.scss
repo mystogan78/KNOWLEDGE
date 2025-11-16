@@ -1,0 +1,22 @@
+@use 'variables' as *;
+
+.lesson-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  &:hover { transform: translateY(-4px); }
+}
+
+/* Même logique que les catégories */
+.lesson-card--informatique,
+.lesson-badge--informatique { background: $color_accent; color: $color_background; }
+
+.lesson-card--cuisine,
+.lesson-badge--cuisine { background: $color_parsimony1; color: $color_background; }
+
+.lesson-card--jardinage,
+.lesson-badge--jardinage { background: $color_parsimony2; color: $color_background; }
+
+.lesson-card--musique,
+.lesson-badge--musique { background: $color_background; color: $color_text; }

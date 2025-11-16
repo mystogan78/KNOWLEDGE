@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+  <h1 class="mb-4">Catégories</h1>
+
+  {# 🎨 Mapping slug → icône Bootstrap Icons #}
+  {% set categoryIcons = {
+    'informatique': 'bi bi-laptop',
+    'musique':      'bi bi-music-note-beamed',
+    'jardinage':    'bi bi-flower3',
+    'cuisine':      'bi bi-egg-fried'
+  } %}
+
+  <div class="row g-4">
+    {% for category in categories %}
+      <div class="col-md-3">
+        <div class="card category-card category-card--{{ category.slug }}">
+          <div class="card-body text-center">
+
+            {# 🖼 Icône selon le slug (ou une icône par défaut si slug inconnu) #}
+            {% set iconClass = categoryIcons[category.slug]|default('bi bi-book') %}
+
+            <h5 class="card-title">
+              <i class="{{ iconClass }} me-1"></i>
+              {{ category.name }}
+            </h5>
+
+            <a href="{{ path('category_show', { slug: category.slug }) }}" class="btn btn-light btn-sm mt-2">
+              Voir les cours
+            </a>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <p>Aucune catégorie disponible.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

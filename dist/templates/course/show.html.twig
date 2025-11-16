@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ course.title }} – Knowledge
+{% endblock %}
+
+{% block body %}
+<div class="course-show container mt-4">
+
+  {# --- En-tête du cours --- #}
+  <header class="course-header mb-4 text-center">
+    <h1 class="display-5 fw-bold">{{ course.title }}</h1>
+    <p class="text-muted">{{ course.category.name }}</p>
+  </header>
+
+  {# au lieu de: {% if course.image %} ... {% endif %} #}
+
+{% set img = attribute(course, 'image') %}
+{% if img %}
+  <img src="{{ asset('uploads/courses/' ~ img) }}"
+       alt="Image du cours {{ course.title }}" class="img-fluid rounded mb-3">
+{% else %}
+  <img src="{{ asset('images/placeholders/course.jpg') }}"
+       alt="Image indisponible" class="img-fluid rounded mb-3">
+{% endif %}
+
+
+    <div class="card p-3">
+      <h5>Description :</h5>
+      <p>{{ course.description|raw }}</p>
+
+      <ul class="list-group list-group-flush mt-3">
+        <li class="list-group-item">
+          <strong>Durée :</strong> {{ course.duration ?? 'Non précisée' }}
+        </li>
+        <li class="list-group-item">
+          <strong>Niveau :</strong> {{ course.level ?? 'Tous niveaux' }}
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {# --- Liste des leçons du cours --- #}
+  {% if course.lessons is defined and course.lessons|length > 0 %}
+    <section class="course-lessons mt-4">
+      <h3 class="mb-3">Contenu du cours :</h3>
+
+      <div class="list-group">
+        {% for lesson in course.lessons %}
+          <a href="{{ path('lesson_show', { slug: lesson.slug }) }}" 
+             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            {{ lesson.title }}
+            <span class="badge bg-primary rounded-pill">
+              {{ lesson.duration ?? 'Durée inconnue' }}
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% else %}
+    <div class="alert alert-warning mt-4">Aucune leçon n’est encore disponible pour ce cours.</div>
+  {% endif %}
+
+  {# --- Bouton retour --- #}
+  {% if course.category is defined and course.category and course.category.slug is defined %}
+  <a href="{{ path('category_show', { slug: course.category.slug }) }}">
+    {{ course.category.name }}
+  </a>
+{% else %}
+  <span class="text-muted">Catégorie inconnue</span>
+{% endif %}
+{% if app.user %}
+    {% if isPurchased %}
+        <div class="alert alert-success mt-3">
+            ✅ Vous avez déjà acheté ce cursus.
+        </div>
+    {% else %}
+        {# bouton d'achat sur course/show.html.twig #}
+<a href="{{ path('purchase_start', { slug: course.slug }) }}" class="btn btn-primary mt-3">
+  Acheter le cursus – {{ course.price|number_format(2, ',', ' ') }} €
+</a>
+
+    {% endif %}
+{% else %}
+    <div class="alert alert-warning mt-3">
+        <a href="{{ path('app_login') }}">Connectez-vous</a> pour acheter ce cursus.
+    </div>
+{% endif %}
+
+
+
+</div>
+{% endblock %}

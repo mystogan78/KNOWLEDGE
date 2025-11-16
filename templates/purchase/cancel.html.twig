@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement annulé – Knowledge{% endblock %}
+
+{% block body %}
+<div class="container mt-5 text-center">
+    <h1 class="text-danger">❌ Paiement annulé</h1>
+    <p class="lead mt-3">
+        Votre paiement a été annulé. Aucune somme n’a été prélevée.
+    </p>
+
+    <p class="mt-4">
+        Vous pouvez <a href="{{ path('course_show', { slug: purchase.course.slug }) }}">retourner au cours</a> 
+        ou visiter la <a href="{{ path('app_home') }}">page d’accueil</a>.
+    </p>
+
+    <a href="{{ path('app_home') }}" class="btn btn-outline-primary mt-3">
+        Retour à l’accueil
+    </a>
+</div>
+{% endblock %}

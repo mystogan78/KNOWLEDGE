@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les leçons{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+  <h1 class="mb-4 text-center">📚 Liste des leçons</h1>
+
+  {% if lessons is defined and lessons|length > 0 %}
+    <div class="row g-4">
+      {% for lesson in lessons %}
+        {% set catSlug = lesson.course.category.slug|default('autre') %}
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm border-0 lesson-card lesson-card--{{ catSlug }}">
+            <div class="card-body d-flex flex-column">
+
+              <h5 class="card-title mb-2">{{ lesson.title }}</h5>
+
+              {% if lesson.course %}
+                <p class="text-muted small mb-2">
+                  Cursus : 
+                  <a href="{{ path('course_show', { slug: lesson.course.slug }) }}" class="link-secondary text-decoration-none">
+                    {{ lesson.course.title }}
+                  </a>
+                </p>
+              {% endif %}
+
+              {% if lesson.introText %}
+                <p class="card-text flex-grow-1">
+                  {{ lesson.introText|u.truncate(130, '…') }}
+                </p>
+              {% endif %}
+
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="badge lesson-badge--{{ catSlug }} fs-6">
+                  {{ lesson.price|default('0.00') }} €
+                </span>
+                <a href="{{ path('lesson_show', { slug: lesson.slug }) }}" class="btn btn-outline-primary btn-sm">
+                  Voir la leçon
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center mt-5">
+      Aucune leçon n’a encore été ajoutée.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+

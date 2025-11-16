@@ -1,0 +1,19 @@
+@use 'variables' as *;
+
+h1{
+    display: flex;
+    justify-content: center;
+    color: $color_primary !important;
+}
+
+p{
+    text-align: center;
+    color: $color_text !important;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+a{
+    color: $color_accent !important;
+    text-decoration: none;
+    font-weight: bold;}

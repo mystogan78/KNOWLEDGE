@@ -1,14 +1,243 @@
-body {
-  background-color: #f8f9fa;
-  color: #212529;
-  font-family: Arial, sans-serif;
+@charset "UTF-8";
+/* Pour accéder à tes couleurs globales */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.btn-custom {
-  background-color: #0d6efd;
-  color: white;
-  border: none;
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f1f8fc; /* arrière-plan général */
 }
-.btn-custom:hover {
-  background-color: rgb(1.762295082, 87.2336065574, 213.237704918);
+
+/* HEADER */
+nav.navbar {
+  background-color: #00497c !important; /* ta couleur principale */
+  color: #f1f8fc !important;
 }
+nav.navbar .navbar-brand,
+nav.navbar .nav-link {
+  color: #f1f8fc !important;
+  font-weight: 500;
+}
+nav.navbar .nav-link:hover {
+  color: #0074c7 !important;
+}
+
+/* CONTENU PRINCIPAL */
+main {
+  flex: 1;
+}
+
+/* FOOTER */
+footer {
+  background-color: #00497c;
+  color: #f1f8fc;
+  font-weight: 700;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto; /* pour rester en bas */
+  width: 100%;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  color: #00497c !important;
+}
+
+/* Base neutre : on garde notre carte maître */
+.card.category-card {
+  border-radius: 12px;
+  border: 1px solid #f1f8fc;
+  overflow: hidden;
+}
+
+/* Le body ne doit pas recolorer en blanc */
+.card.category-card .card-body {
+  background: transparent;
+}
+
+/* Couleurs par slug — on cible la même balise .card pour battre Bootstrap */
+.card.category-card.category-card--informatique {
+  background-color: #0074c7 !important; /* ← mets !important au début, on l’enlèvera quand tout marche */
+  color: #f1f8fc;
+}
+
+.card.category-card.category-card--cuisine {
+  background-color: #cd2c2e !important;
+  color: #f1f8fc;
+}
+
+.card.category-card.category-card--jardinage {
+  background-color: #82b864 !important;
+  color: #f1f8fc;
+}
+
+.card.category-card.category-card--musique {
+  background-color: #f1f8fc !important;
+  color: #384050;
+}
+
+/* <= présent ? */
+.course-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Même logique de couleurs que pour les catégories */
+.course-card--informatique {
+  background: #0074c7;
+  color: #f1f8fc;
+}
+
+.course-card--cuisine {
+  background: #cd2c2e;
+  color: #f1f8fc;
+}
+
+.course-card--jardinage {
+  background: #82b864;
+  color: #f1f8fc;
+}
+
+.course-card--musique {
+  background: #f1f8fc;
+  color: #384050;
+}
+
+/* Si tu veux seulement colorer le badge : */
+.course-badge--informatique {
+  background: #0074c7;
+  color: #f1f8fc;
+}
+
+.course-badge--cuisine {
+  background: #cd2c2e;
+  color: #f1f8fc;
+}
+
+.course-badge--jardinage {
+  background: #82b864;
+  color: #f1f8fc;
+}
+
+.course-badge--musique {
+  background: #f1f8fc;
+  color: #384050;
+}
+
+.lesson-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.lesson-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Même logique que les catégories */
+.lesson-card--informatique,
+.lesson-badge--informatique {
+  background: #0074c7;
+  color: #f1f8fc;
+  /* ✅ Ajoute ceci pour corriger le lien "Cursus" invisible */
+  --bs-card-color: #fff; /* texte à l'intérieur de la carte */
+  --bs-link-color: #fff; /* lien normal */
+  --bs-link-hover-color: #e6e6e6; /* lien au survol */
+}
+
+.lesson-card--cuisine,
+.lesson-badge--cuisine {
+  background: #cd2c2e;
+  color: #f1f8fc;
+}
+
+.lesson-card--jardinage,
+.lesson-badge--jardinage {
+  background: #82b864;
+  color: #f1f8fc;
+}
+
+.lesson-card--musique,
+.lesson-badge--musique {
+  background: #f1f8fc;
+  color: #384050;
+}
+
+.lesson-card .lesson-intro,
+.lesson-card .lesson-intro * {
+  color: inherit !important; /* reprend la couleur définie sur .lesson-card--xxx */
+}
+
+/* liens lisibles sur fond sombre */
+.lesson-card .lesson-intro a {
+  text-decoration: underline;
+  color: inherit !important;
+}
+
+.lesson-legend {
+  outline: 3px solid red;
+  background: #fce4ec;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #000;
+}
+
+/* Pastilles rondes */
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Couleurs finales */
+.bg-informatique {
+  background-color: #0074c7 !important;
+}
+
+.bg-cuisine {
+  background-color: #cd2c2e !important;
+}
+
+.bg-jardinage {
+  background-color: #82b864 !important;
+}
+
+.bg-musique {
+  background-color: #f1f8fc !important;
+  border: 1px solid #384050;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  color: #00497c !important;
+}
+
+p {
+  text-align: center;
+  color: #384050 !important;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.main-content a {
+  color: #00497c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=app.css.map */

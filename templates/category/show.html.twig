@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+<h1>{{ category.name }}</h1>
+<p class="text-muted">{{ category.heroText ?? '' }}</p>
+
+<div class="row g-3">
+  {% for course in courses %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100 p-3">
+        <h5 class="mb-2">{{ course.title }}</h5>
+        <p class="mb-2">{{ course.description|default('')|slice(0,120) ~ '…' }}</p>
+        <div class="mt-auto d-flex justify-content-between align-items-center">
+          <span class="badge bg-secondary">{{ course.price }} €</span>
+          <a class="btn btn-sm btn-primary" href="{{ path('course_show', { slug: course.slug }) }}">Voir</a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <p>Aucun cours dans cette catégorie.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+@use 'variables' as *;
+
+h1{
+    display: flex;
+    justify-content: center;
+    color: $color_primary !important;
+}
+
+/* Base neutre : on garde notre carte maître */
+.card.category-card {
+  border-radius: 12px;
+  border: 1px solid $color_background;
+  overflow: hidden;
+}
+
+/* Le body ne doit pas recolorer en blanc */
+.card.category-card .card-body {
+  background: transparent;
+}
+
+/* Couleurs par slug — on cible la même balise .card pour battre Bootstrap */
+.card.category-card.category-card--informatique {
+  background-color: $color_accent !important;  /* ← mets !important au début, on l’enlèvera quand tout marche */
+  color: $color_background;
+}
+
+.card.category-card.category-card--cuisine {
+  background-color: $color_parsimony1 !important;
+  color: $color_background;
+}
+
+.card.category-card.category-card--jardinage {
+  background-color: $color_parsimony2 !important;
+  color:$color_background;
+}
+
+.card.category-card.category-card--musique {
+  background-color: $color_background !important;
+  color: $color_text;
+}

@@ -1,0 +1,46 @@
+@use 'variables' as *;  /* Pour accéder à tes couleurs globales */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $color_background; /* arrière-plan général */
+}
+
+/* HEADER */
+nav.navbar {
+  background-color: $color_primary !important; /* ta couleur principale */
+  color: $color_background !important;
+
+  .navbar-brand,
+  .nav-link {
+    color: $color_background !important;
+    font-weight: 500;
+  }
+
+  .nav-link:hover {
+    color: $color_accent !important;
+  }
+}
+
+/* CONTENU PRINCIPAL */
+main {
+  flex: 1;
+}
+
+/* FOOTER */
+footer {
+  background-color: $color_primary;
+  color: $color_background;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto; /* pour rester en bas */
+  width: 100%;
+  font-size: 0.9rem;
+}

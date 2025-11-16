@@ -1,0 +1,112 @@
+{# templates/registration/register.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+  {# flash d’erreur de vérification email #}
+  {% for flash_error in app.flashes('verify_email_error') %}
+    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+  {% endfor %}
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+        <div class="card shadow-sm form-card">
+          <div class="card-body p-4 p-md-5">
+
+            <h1 class="h3 mb-4 text-center">Créer un compte</h1>
+
+            {# ajoute des classes globales sur le <form> pour tes styles Sass #}
+            {{ form_start(registrationForm, {
+              attr: { class: 'needs-validation register-form', novalidate: true }
+            }) }}
+
+              {# erreurs globales #}
+              {{ form_errors(registrationForm) }}
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  {{ form_row(registrationForm.firstName, {
+                    label: 'Prénom',
+                    attr: { placeholder: 'Votre prénom', class: 'input-firstname' }
+                  }) }}
+                </div>
+                <div class="col-md-6">
+                  {{ form_row(registrationForm.lastName, {
+                    label: 'Nom',
+                    attr: { placeholder: 'Votre nom', class: 'input-lastname' }
+                  }) }}
+                </div>
+
+                <div class="col-12">
+                  {{ form_row(registrationForm.addressLine1, {
+                    label: 'Adresse',
+                    attr: { placeholder: 'N° et rue', class: 'input-address1' }
+                  }) }}
+                </div>
+                <div class="col-12">
+                  {{ form_row(registrationForm.addressLine2, {
+                    label: 'Complément (optionnel)',
+                    attr: { placeholder: 'Bâtiment, étage…', class: 'input-address2' }
+                  }) }}
+                </div>
+
+                <div class="col-md-4">
+                  {{ form_row(registrationForm.postalCode, {
+                    label: 'Code postal',
+                    attr: { class: 'input-postal' }
+                  }) }}
+                </div>
+                <div class="col-md-5">
+                  {{ form_row(registrationForm.city, {
+                    label: 'Ville',
+                    attr: { class: 'input-city' }
+                  }) }}
+                </div>
+                <div class="col-md-3">
+                  {{ form_row(registrationForm.country, {
+                    label: 'Pays',
+                    attr: { class: 'input-country' }
+                  }) }}
+                </div>
+
+                <div class="col-12">
+                  {{ form_row(registrationForm.email, {
+                    label: 'Email',
+                    attr: { placeholder: 'vous@exemple.com', class: 'input-email' }
+                  }) }}
+                </div>
+
+                <div class="col-12">
+                  {{ form_row(registrationForm.plainPassword, {
+                    label: 'Mot de passe',
+                    attr: { placeholder: 'Au moins 6 caractères', class: 'input-password' }
+                  }) }}
+                </div>
+
+                <div class="col-12">
+                  {{ form_row(registrationForm.agreeTerms, {
+                    label: "J'accepte les conditions d’utilisation"
+                  }) }}
+                </div>
+
+                <div class="col-12 mt-2">
+                  <button type="submit" class="btn btn-primary w-100 py-2 register-submit">
+                    Créer mon compte
+                  </button>
+                </div>
+              </div>
+
+            {{ form_end(registrationForm) }}
+
+            <p class="text-center small text-muted mt-3 mb-0">
+              Déjà inscrit ? <a href="{{ path('app_login') }}">Se connecter</a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

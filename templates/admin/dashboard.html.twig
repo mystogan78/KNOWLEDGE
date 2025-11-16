@@ -1,0 +1,22 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+  <h1 class="mb-4">Tableau de bord</h1>
+
+  <div class="d-flex gap-2">
+    <a class="btn btn-secondary"
+       href="{{ ea_url().setController('App\\Controller\\Admin\\CategoryCrudController').setAction('index') }}">
+      Gérer les catégories
+    </a>
+
+    <a class="btn btn-secondary"
+       href="{{ ea_url().setController('App\\Controller\\Admin\\CourseCrudController').setAction('index') }}">
+      Gérer les cours
+    </a>
+
+    <a class="btn btn-secondary"
+       href="{{ ea_url().setController('App\\Controller\\Admin\\LessonCrudController').setAction('index') }}">
+      Gérer les leçons
+    </a>
+  </div>
+{% endblock %}
